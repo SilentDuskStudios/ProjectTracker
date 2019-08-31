@@ -1,0 +1,68 @@
+﻿@model ProjectTracker.Models.Issue
+@{
+    ViewData["Title"] = "IssueRead";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Html.DisplayFor(x => x.Summary)</h1>
+<hr />
+
+@*Table for displaying a given Issue*@
+<div class="table table-responsive">
+    <table class="table table-bordered">
+
+        <tr>
+            <td><b>@Html.LabelFor(x => x.ID)</b></td>
+            <td>@Html.DisplayFor(x => x.ID)</td>
+        </tr>
+
+        <tr>
+            <td><b>@Html.LabelFor(x => x.Priority)</b></td>
+            <td>@Html.DisplayFor(x => x.Priority)</td>
+        </tr>
+
+        <tr>
+            <td><b>@Html.LabelFor(x => x.DateStart)</b></td>
+            <td>@Html.DisplayFor(x => x.DateStart)</td>
+        </tr>
+
+        <tr>
+            <td><b>@Html.LabelFor(x => x.DateDue)</b></td>
+            <td>@Html.DisplayFor(x => x.DateDue)</td>
+        </tr>
+
+        <tr>
+            <td><b>@Html.LabelFor(x => x.Status)</b></td>
+            <td>@Html.DisplayFor(x => x.Status)</td>
+        </tr>
+
+    </table>
+</div>
+
+@Html.ActionLink("Back", "Index", "Issue", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Edit", "Update", "Issue", new { id = Model.ID }, new { @class = "btn btn-success" })
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Delete</button>
+
+@*Possible to create a partial view and feed data to it.*@
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Deleting a Task</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <p>Are you sure you wish to delete the following:</p>
+                <p>@Model.Summary</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                @Html.ActionLink("Delete", "Delete", "Issue", new { id = Model.ID }, new { @class = "btn btn-danger" })
+            </div>
+
+        </div>
+    </div>
+</div>

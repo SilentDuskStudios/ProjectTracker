@@ -1,0 +1,36 @@
+﻿@model ProjectTracker.Models.Issue
+@{
+    ViewData["Title"] = "IssueUpdate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit an existing Task</h1>
+<hr />
+
+<fieldset>
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @Html.LabelFor(x => x.Summary, new { @class = "col-sm-2" })
+            @Html.EditorFor(x => x.Summary, new { @class = "col-sm-4" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Priority, new { @class = "col-sm-2" })
+            @Html.DropDownList("Priority", Html.GetEnumSelectList<PriorityEnum>(), new { @class = "col-sm-4" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.DateDue, new { @class = "col-sm-2" })
+            @Html.EditorFor(x => x.DateDue, new { @class = "col-sm-4" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Status, new { @class = "col-sm-2" })
+            @Html.DropDownList("Status", Html.GetEnumSelectList<StatusEnum>(), new { @class = "col-sm-4" })
+        </div>
+
+        @Html.ActionLink("Back", "Read", "Issue", new { id = Model.ID }, new { @class = "btn btn-primary" })
+        <button type="submit" class="btn btn-success">Submit</button>
+    }
+</fieldset>

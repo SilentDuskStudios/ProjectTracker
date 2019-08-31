@@ -1,0 +1,51 @@
+﻿@model List<ProjectTracker.Models.Issue>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Tasks</h1>
+<hr />
+
+@Html.ActionLink("Add new Task", "Create", "Issue", null, new { @class = "btn btn-primary" })
+
+<p></p>
+
+@*If there are no issues created.*@
+@if(!Model.Any())
+{
+    <p>There are currently no Tasks.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th>@Html.LabelFor(x => x.FirstOrDefault().ID)</th>
+                    <th>@Html.LabelFor(x => x.FirstOrDefault().Summary)</th>
+                    <th>@Html.LabelFor(x => x.FirstOrDefault().Priority)</th>
+                    <th>@Html.LabelFor(x => x.FirstOrDefault().DateStart)</th>
+                    <th>@Html.LabelFor(x => x.FirstOrDefault().DateDue)</th>
+                    <th>@Html.LabelFor(x => x.FirstOrDefault().Status)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var issue in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(issue.ID.ToString(), "Read", "Issue", new { id = issue.ID }, new { @class = "btn btn-primary" })</td>
+                        <td>@issue.Summary</td>
+                        <td>@issue.Priority</td>
+                        <td>@issue.DateStart.ToString("dd/MM/yyyy")</td>
+                        <td>@issue.DateDue.ToString("dd/MM/yyyy")</td>
+                        <td>@issue.Status</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+}

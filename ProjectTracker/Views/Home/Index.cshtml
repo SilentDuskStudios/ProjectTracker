@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+
+<p>Welcome to Project Tracker v0.0.1</p>
+
+<p>This web application allows users to track their projects by creating, reading, updating and deleting tasks.</p>
+
+@Html.ActionLink("Click to get started!", "Index", "Issue", null, new { @class = "btn btn-primary" })

@@ -1,0 +1,41 @@
+﻿@model ProjectTracker.Models.Issue
+@{
+    ViewData["Title"] = "IssueCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create a new Task</h1>
+<hr />
+
+<fieldset>
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()
+
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Summary, new { @class = "col-sm-2" })
+            @Html.EditorFor(x => x.Summary, new { @class = "col-sm-4" })
+            @Html.ValidationMessageFor(x => x.Summary)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Priority, new { @class = "col-sm-2" })
+            @Html.DropDownList("Priority", Html.GetEnumSelectList<PriorityEnum>(), "Select Priority", new { @class = "col-sm-4" })
+            @Html.ValidationMessageFor(x => x.Priority)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.DateDue, new { @class = "col-sm-2" })
+            @Html.EditorFor(x => x.DateDue, new { @class = "col-sm-4" })
+            @Html.ValidationMessageFor(x => x.DateDue)
+        </div>
+
+        <p>
+            @Html.ActionLink("Back", "Index", "Issue", null, new { @class = "btn btn-primary" })
+            <button type="submit" class="btn btn-success">Create Issue</button>
+        </p>
+        }
+
+</fieldset>
